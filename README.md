@@ -14,7 +14,7 @@ This repository contains a collection of Python scripts designed to automate var
 git clone https://github.com/airdroptestnet275/Monad-Testnet-Auto-Python-Bot-main.git
 ```
 ```sh
-cd Monad-Testnet-Auto-Python-Bot
+cd Monad-Testnet-Auto-Python-Bot-main
 ```
 2. **Install Dependencies:**
 - Open cmd or Shell, then run the command:
