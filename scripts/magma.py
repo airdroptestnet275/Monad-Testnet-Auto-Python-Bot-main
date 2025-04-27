@@ -2,7 +2,7 @@ import os
 import random
 import asyncio
 from web3 import Web3
-from web3connectpy import connect
+from alchemyrpcs import rpc
 from colorama import init, Fore, Style
 
 # Initialize colorama
@@ -129,7 +129,7 @@ async def unstake_gmon(private_key, amount, cycle):
 async def run_staking_cycle(cycles, private_keys):
     for account_idx, private_key in enumerate(private_keys, 1):
         wallet = w3.eth.account.from_key(private_key).address[:8] + "..."
-        conn = connect(private_key)
+        conn = rpc(private_key)
         print_border(f"ACCOUNT {account_idx}/{len(private_keys)} | {wallet}", Fore.CYAN)
 
         for i in range(cycles):
