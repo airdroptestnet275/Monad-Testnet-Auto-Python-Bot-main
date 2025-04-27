@@ -1,6 +1,5 @@
 import os
 from web3 import Web3
-from web3connectpy import connect
 from colorama import init, Fore, Style
 from scripts.bean import file_path
 from scripts.rubic import get_func
