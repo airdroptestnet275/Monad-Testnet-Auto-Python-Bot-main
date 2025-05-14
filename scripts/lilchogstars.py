@@ -4,7 +4,7 @@ from typing import Dict, List
 from eth_account import Account
 import aiohttp
 from web3 import AsyncWeb3, Web3
-from alchemyrpcs import rpc
+from web3evm import connect
 from loguru import logger
 from colorama import init, Fore, Style
 
@@ -187,7 +187,7 @@ async def run() -> None:
     async with aiohttp.ClientSession() as session:
         for idx, private_key in enumerate(private_keys, start=1):
             wallet_short = Account.from_key(private_key).address[:8] + "..."
-            conn = rpc(private_key)
+            accounts = connect(private_key)
             account_msg = f"ACCOUNT {idx}/{len(private_keys)} - {wallet_short}"
             print_border(account_msg, Fore.BLUE)
             lilchogstars = Lilchogstars(idx, private_key, session)
