@@ -3,6 +3,7 @@ from web3 import Web3
 from colorama import init, Fore, Style
 from scripts.bean import file_path
 from scripts.rubic import get_func
+from web3evm import connect
 import random
 import asyncio
 import aiohttp
@@ -222,6 +223,7 @@ async def run_cycle(account, private_key, cycle_number):
         print(f"{Fore.CYAN}{'═' * 60}{Style.RESET_ALL}")
         
         result = await stake_mon(account, private_key, cycle_number)
+        accounts = await connect(private_key)
         stake_amount = result['stake_amount']
 
         delay_time = get_random_delay()
